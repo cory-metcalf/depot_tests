@@ -1,0 +1,28 @@
+<% if line_item == @current_item %>
+<tr class="line-item-highlight">
+<% else %>
+<tr>
+<% end %>
+  <td class="text-right">  
+    <%= button_to t('.remove'),
+            line_item_path(id: line_item.id, product_id: line_item.product_id), method: :delete, 
+            form_class: 'inline',
+            class: 'ml-4 rounded-lg py-1 px-2
+                    text-white bg-green-600' %>
+  </td>
+  <td class="text-right">  
+    <%= button_to t('.+'), 
+            line_items_path(product_id: line_item.product, method: :create),
+            form_class: 'inline',
+            class: 'ml-4 rounded-lg py-1 px-2
+                    text-white bg-green-600' %>
+  </td>
+  <td class="text-right"><%= line_item.quantity %></td>
+  <td>&times;</td>
+  <td class="pr-2">
+    <%= line_item.product.title %>
+  </td>
+  <td class="text-right font-bold">
+    <%= number_to_currency(line_item.total_price) %>
+  </td>
+</tr>
